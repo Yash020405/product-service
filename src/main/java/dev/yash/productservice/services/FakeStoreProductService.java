@@ -15,8 +15,6 @@ import java.util.List;
 public class FakeStoreProductService implements ProductService {
     @Override
     public Product getProductById(Long id) {
-        //Call the FakeStore API to get the product with give id.
-        //int x = 1/0;
         RestTemplate restTemplate = new RestTemplate();
         FakeStoreProductDto fakeStoreProductDto =
                 restTemplate.getForObject("https://fakestoreapi.com/products/" + id,
@@ -26,7 +24,6 @@ public class FakeStoreProductService implements ProductService {
             throw new ProductNotFoundException(id, "Please pass a valid productId");
         }
 
-        //convert FakeStoreProductDto object to Product object.
         return convertFakeStoreProductDtoToProduct(fakeStoreProductDto);
     }
 
